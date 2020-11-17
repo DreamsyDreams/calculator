@@ -29,7 +29,13 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-
+        if (this.currentOutput === '') return;
+        if (this.previousOutput !== '') {
+            this.compute();
+        }
+        this.operation = operation;
+        this.previousOutput = this.currentOutput;
+        this.currentOutput = '';
     }
 
     compute() {
@@ -46,6 +52,13 @@ const calculator = new Calculator(previousOutputText, currentOutputText);
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.addNumber(button.value);
+        calculator.updateDisplay();
+    });
+});
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.value);
         calculator.updateDisplay();
     });
 });
