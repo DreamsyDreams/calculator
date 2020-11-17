@@ -10,10 +10,13 @@ class Calculator {
     constructor(previousOutputText, currentOutputText) {
         this.previousOutputText = previousOutputText;
         this.currentOutputText = currentOutputText;
+        this.clear();
     }
 
     clear() {
-
+        this.currentOutput = '';
+        this.previousOutput = '';
+        this.operation = undefined;
     }
 
     delete() {
@@ -21,7 +24,8 @@ class Calculator {
     }
 
     addNumber(number) {
-
+        if (number === '.' && this.currentOutput.includes('.')) return;
+        this.currentOutput = this.currentOutput.toString() + number.toString();
     }
 
     chooseOperation(operation) {
@@ -33,8 +37,15 @@ class Calculator {
     }
 
     updateDisplay() {
-
+        this.currentOutputText.innerHTML = this.currentOutput
     }
 }
 
 const calculator = new Calculator(previousOutputText, currentOutputText);
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.addNumber(button.value);
+        calculator.updateDisplay();
+    });
+});
