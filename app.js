@@ -66,6 +66,7 @@ class Calculator {
 
     updateDisplay() {
         this.currentOutputText.innerHTML = this.currentOutput;
+        this.previousOutputText.innerHTML = this.previousOutput;
     }
 }
 
