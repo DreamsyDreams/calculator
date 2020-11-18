@@ -20,7 +20,7 @@ class Calculator {
     }
 
     delete() {
-
+        this.currentOutput = this.currentOutput.toString().slice(0, -1);
     }
 
     addNumber(number) {
@@ -94,5 +94,10 @@ equalsButton.addEventListener('click', button => {
 
 allClearButton.addEventListener('click', button => {
     calculator.clear();
+    calculator.updateDisplay();
+});
+
+deleteButton.addEventListener('click', button => {
+    calculator.delete();
     calculator.updateDisplay();
 });
