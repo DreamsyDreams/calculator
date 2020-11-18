@@ -66,7 +66,9 @@ class Calculator {
 
     updateDisplay() {
         this.currentOutputText.innerHTML = this.currentOutput;
-        this.previousOutputText.innerHTML = this.previousOutput;
+        if (this.operation !== undefined) {
+            this.previousOutputText.innerHTML = `${this.previousOutput} ${this.operation}`;
+        };
     }
 }
 
