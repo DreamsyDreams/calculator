@@ -91,3 +91,8 @@ equalsButton.addEventListener('click', button => {
     calculator.updateDisplay();
     console.log('works');
 });
+
+allClearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.updateDisplay();
+});
