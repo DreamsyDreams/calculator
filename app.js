@@ -64,11 +64,30 @@ class Calculator {
         this.previousOutput = '';
     }
 
+    getDisplayNumber(number) {
+        const stringNumber = number.toString();
+        const integerDigits = parseFloat(stringNumber.split('.')[0]);
+        const decimalDigits = stringNumber.split('.')[1];
+        let integerDisplay;
+        if (isNaN(integerDigits)) {
+            integerDisplay = '0';
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
+        }
+        if (decimalDigits !== undefined) {
+            return `${integerDisplay}.${decimalDigits}`;
+        } else {
+            return integerDisplay;
+        }
+    }
+
     updateDisplay() {
-        this.currentOutputText.innerHTML = this.currentOutput;
+        this.currentOutputText.innerHTML = this.getDisplayNumber(this.currentOutput);
         if (this.operation !== undefined) {
-            this.previousOutputText.innerHTML = `${this.previousOutput} ${this.operation}`;
-        };
+            this.previousOutputText.innerHTML = `${this.getDisplayNumber(this.previousOutput)} ${this.operation}`;
+        } else {
+            this.previousOutputText.innerHTML = '';
+        }
     }
 }
 
