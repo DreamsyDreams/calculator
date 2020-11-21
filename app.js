@@ -14,7 +14,7 @@ class Calculator {
     }
 
     clear() {
-        this.currentOutput = '';
+        this.currentOutput = '0';
         this.previousOutput = '';
         this.operation = undefined;
     }
@@ -35,7 +35,7 @@ class Calculator {
         }
         this.operation = operation;
         this.previousOutput = this.currentOutput;
-        this.currentOutput = '';
+        this.currentOutput = '0';
     }
 
     compute() {
