@@ -2,6 +2,7 @@ const numberButtons = document.querySelectorAll('.number');
 const operationButtons = document.querySelectorAll('.operation');
 const allClearButton = document.querySelector('.all-clear');
 const deleteButton = document.querySelector('.delete');
+const negateButton = document.querySelector('.negative-sign');
 const equalsButton = document.querySelector('.equals');
 const previousOutputText = document.querySelector('.previous-output');
 const currentOutputText = document.querySelector('.current-output');
@@ -26,6 +27,12 @@ class Calculator {
     addNumber(number) {
         if (number === '.' && this.currentOutput.includes('.')) return;
         this.currentOutput = this.currentOutput.toString() + number.toString();
+    }
+
+    negateNumber() {
+        if (this.currentOutput === 0) return;
+        if (this.currentOutput.includes('-')) return;
+        this.currentOutput = '-' + this.currentOutput;
     }
 
     chooseOperation(operation) {
@@ -119,5 +126,10 @@ allClearButton.addEventListener('click', button => {
 
 deleteButton.addEventListener('click', button => {
     calculator.delete();
+    calculator.updateDisplay();
+});
+
+negateButton.addEventListener('click', button => {
+    calculator.negateNumber();
     calculator.updateDisplay();
 });
